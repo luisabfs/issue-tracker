@@ -1,8 +1,7 @@
 import React from 'react';
 import Lottie from 'lottie-react';
+import animationData from 'assets/github.json';
 import { Title, Container } from './styles';
-import animationData from '../../assets/github.json';
-import gif from '../../assets/github.gif';
 
 const Dashboard: React.FC = () => (
   <Container>
