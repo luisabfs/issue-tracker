@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Repositories = styled.div`
   margin-top: 40px;
   max-width: 700px;
+  background-color: red;
 
   a {
     display: flex;
@@ -51,4 +52,10 @@ export const Repositories = styled.div`
       color: #a8a8a8;
     }
   }
+`;
+
+export const Dots = styled.div`
+  background-image: url('https://github.blog/wp-content/themes/github-blog/assets/images/dot-left-corner.png');
+  background-position: bottom;
+  background-repeat: space;
 `;
