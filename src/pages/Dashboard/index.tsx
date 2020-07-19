@@ -1,14 +1,20 @@
 import React from 'react';
 import Lottie from 'lottie-react';
+
 import animationData from 'assets/github.json';
-import { Title, Container } from './styles';
+import logo from 'assets/logo.svg';
+
+import { Container, Wrapper, Title } from './styles';
 
 const Dashboard: React.FC = () => (
   <Container>
-    <Title>Contribua no open-source!</Title>
-    <div style={{ flex: 1 }}>
+    <Wrapper>
+      <img src={logo} alt="" />
+      <Title>Contribute to open-source!</Title>
+    </Wrapper>
+    <Wrapper>
       <Lottie animationData={animationData} loop={false} />
-    </div>
+    </Wrapper>
   </Container>
 );
 

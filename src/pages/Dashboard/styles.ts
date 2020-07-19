@@ -5,12 +5,13 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  display: flex;
   flex: 1;
+  padding: 30px;
 `;
 
 export const Title = styled.h1`
   font-size: 48px;
   color: #fafafa;
-  width: 50%;
+  margin-top: 40px;
+  line-height: 56px;
 `;
