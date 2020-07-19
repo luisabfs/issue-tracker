@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  display: flex;
+  padding-top: 30px;
+`;
+
 export const Repositories = styled.div`
-  margin-top: 40px;
   max-width: 700px;
-  background-color: red;
 
   a {
     display: flex;
@@ -54,8 +57,8 @@ export const Repositories = styled.div`
   }
 `;
 
-export const Dots = styled.div`
-  background-image: url('https://github.blog/wp-content/themes/github-blog/assets/images/dot-left-corner.png');
-  background-position: bottom;
-  background-repeat: space;
+export const Dots = styled.img`
+  margin-top: -40px;
+  margin-left: 20px;
+  align-self: flex-start;
 `;
