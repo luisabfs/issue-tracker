@@ -6,6 +6,11 @@ export default createGlobalStyle`
     margin: 0%;
     padding: 0;
     margin: 0;
+    outline: 0;
+
+    &:focus {
+      box-shadow: inset 0 0 0 2pt #82FFF9;
+    }
   }
 
   body {
