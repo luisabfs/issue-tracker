@@ -9,7 +9,7 @@ export default createGlobalStyle`
     outline: 0;
 
     &:focus {
-      box-shadow: inset 0 0 0 2pt #82FFF9;
+      box-shadow: inset 0 0 0 3pt #82FFF9;
     }
   }
 
