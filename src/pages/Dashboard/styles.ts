@@ -38,6 +38,12 @@ export const Form = styled.form`
     font-family: 'Montserrat', sans-serif;
 
     border-radius: 50px 0 0 50px;
+
+    &::placeholder {
+      color: #a8a8b3;
+      letter-spacing: 0.21px;
+      font-weight: 600;
+    }
   }
 
   button {
