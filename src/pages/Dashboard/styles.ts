@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface FormProps {
+  hasError: boolean;
+}
+
 export const Container = styled.div`
   display: flex;
   flex: 1;
@@ -9,7 +13,6 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   flex: 1;
-  align-items: center;
 `;
 
 export const Logo = styled.img`
@@ -19,11 +22,11 @@ export const Logo = styled.img`
 export const Title = styled.h1`
   color: #fafafa;
   font-size: 48px;
-  margin-top: 40px;
+  margin-top: 140px;
   line-height: 56px;
 `;
 
-export const Form = styled.form`
+export const Form = styled.form<FormProps>`
   display: flex;
   max-width: 100%;
   margin-top: 60px;
@@ -38,6 +41,7 @@ export const Form = styled.form`
     font-family: 'Montserrat', sans-serif;
 
     border-radius: 50px 0 0 50px;
+    border: ${({ hasError }) => hasError && '2pt solid #f2c94c'};
 
     &::placeholder {
       color: #a8a8b3;
@@ -64,6 +68,15 @@ export const Form = styled.form`
       background-color: #4bb8b2;
     }
   }
+`;
+
+export const Error = styled.span`
+  color: #f2c94c;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  margin-top: 8px;
+  margin-left: 4px;
+  display: block;
 `;
 
 export const Repositories = styled.div`
