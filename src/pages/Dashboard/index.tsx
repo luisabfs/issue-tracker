@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
 import Lottie from 'lottie-react';
 
 import logo from 'assets/logo.svg';
@@ -29,7 +29,20 @@ interface Repository {
 const Dashboard: React.FC = () => {
   const [newRepo, setNewRepo] = useState<string>();
   const [inputError, setInputError] = useState<string>();
-  const [repositories, setRepositories] = useState<Repository[]>([]);
+  const [repositories, setRepositories] = useState<Repository[]>(() => {
+    const storage = localStorage.getItem('@IssueTracker:repositories');
+
+    if (storage) return JSON.parse(storage);
+
+    return [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem(
+      '@IssueTracker:repositories',
+      JSON.stringify(repositories),
+    );
+  }, [repositories]);
 
   async function addRepo(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
@@ -41,7 +54,7 @@ const Dashboard: React.FC = () => {
 
     try {
       const { data } = await api.get<Repository>(`repos/${newRepo}`);
-      setRepositories([...repositories, data]);
+      setRepositories([data, ...repositories]);
 
       setNewRepo('');
     } catch (error) {
@@ -58,7 +71,7 @@ const Dashboard: React.FC = () => {
           <Form hasError={!!inputError} onSubmit={addRepo}>
             <input
               placeholder="author/repo-name"
-              value={newRepo}
+              value={newRepo || ''}
               onChange={event => {
                 setInputError('');
                 setNewRepo(event.target.value);
