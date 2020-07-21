@@ -7,7 +7,15 @@ import { FiChevronRight } from 'react-icons/fi';
 import animationData from 'assets/github.json';
 import api from 'services/api';
 
-import { Container, Wrapper, Logo, Title, Form, Repositories } from './styles';
+import {
+  Container,
+  Wrapper,
+  Logo,
+  Title,
+  Form,
+  Error,
+  Repositories,
+} from './styles';
 
 interface Repository {
   full_name: string;
@@ -20,15 +28,25 @@ interface Repository {
 
 const Dashboard: React.FC = () => {
   const [newRepo, setNewRepo] = useState<string>();
+  const [inputError, setInputError] = useState<string>();
   const [repositories, setRepositories] = useState<Repository[]>([]);
 
   async function addRepo(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
 
-    const { data } = await api.get<Repository>(`repos/${newRepo}`);
-    setRepositories([...repositories, data]);
+    if (!newRepo) {
+      setInputError('Please, insert the repository name');
+      return;
+    }
 
-    setNewRepo('');
+    try {
+      const { data } = await api.get<Repository>(`repos/${newRepo}`);
+      setRepositories([...repositories, data]);
+
+      setNewRepo('');
+    } catch (error) {
+      setInputError('Error searching for the repository');
+    }
   }
 
   return (
@@ -37,14 +55,18 @@ const Dashboard: React.FC = () => {
       <Wrapper>
         <Container>
           <Title>Contribute to open source projects!</Title>
-          <Form onSubmit={addRepo}>
+          <Form hasError={!!inputError} onSubmit={addRepo}>
             <input
-              placeholder="Type the repo name"
+              placeholder="author/repo-name"
               value={newRepo}
-              onChange={event => setNewRepo(event.target.value)}
+              onChange={event => {
+                setInputError('');
+                setNewRepo(event.target.value);
+              }}
             />
             <button type="submit">Search</button>
           </Form>
+          {inputError && <Error>{inputError}</Error>}
         </Container>
         <Container>
           <Lottie animationData={animationData} loop={false} />
@@ -62,7 +84,7 @@ const Dashboard: React.FC = () => {
             />
             <div>
               <strong>{repository.full_name}</strong>
-              <p>{repository.description}</p>
+              <p>{repository.description || 'No description'}</p>
             </div>
             <FiChevronRight size={24} />
           </a>
