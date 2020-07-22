@@ -1,14 +1,23 @@
 import React from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { FiChevronLeft } from 'react-icons/fi';
+
+import Brand from 'assets/brand.svg';
+
+import { Header } from './styles';
 
 interface RepositoryParams {
   repository: string;
 }
 
-const Repository: React.FC = () => {
-  const { params } = useRouteMatch<RepositoryParams>();
-
-  return <h1>{params.repository}</h1>;
-};
+const Repository: React.FC = () => (
+  <Header>
+    <img src={Brand} alt="Issue Tracker" />
+    <Link to="/">
+      <FiChevronLeft size={16} />
+      Voltar
+    </Link>
+  </Header>
+);
 
 export default Repository;
