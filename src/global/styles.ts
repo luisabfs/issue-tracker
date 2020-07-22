@@ -15,6 +15,7 @@ export default createGlobalStyle`
 
   body {
     background: #383838;
+    color: #fafafa;
     -webkit-font-smoothing: antialiased;
     font: 16px Montserrat, sans-serif;
   }
