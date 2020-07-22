@@ -2,7 +2,7 @@ import React, { useState, useEffect, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import Lottie from 'lottie-react';
 
-import logo from 'assets/logo.svg';
+import logo from 'assets/brand.svg';
 import { FiChevronRight } from 'react-icons/fi';
 
 import animationData from 'assets/github.json';
