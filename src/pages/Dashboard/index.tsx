@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Lottie from 'lottie-react';
 
 import logo from 'assets/brand.svg';
-import { FiChevronRight } from 'react-icons/fi';
+import { FiChevronRight, FiX } from 'react-icons/fi';
 
 import animationData from 'assets/github.json';
 import api from 'services/api';
@@ -63,6 +63,13 @@ const Dashboard: React.FC = () => {
     }
   }
 
+  function deleteRepo(repo: Repository): void {
+    const index = repositories.indexOf(repo);
+
+    repositories.splice(index, 1);
+    setRepositories([...repositories]);
+  }
+
   return (
     <Container>
       <Logo src={logo} alt="Issue Tracker" />
@@ -86,24 +93,25 @@ const Dashboard: React.FC = () => {
           <Lottie animationData={animationData} loop={false} />
         </Container>
       </Wrapper>
-      <Repositories>
-        {repositories.map(repository => (
-          <Link
-            key={repository.full_name}
-            to={`repositories/${repository.full_name}`}
-          >
-            <img
-              src={repository.owner.avatar_url}
-              alt={repository.owner.login}
-            />
-            <div>
-              <strong>{repository.full_name}</strong>
-              <p>{repository.description || 'No description'}</p>
-            </div>
-            <FiChevronRight size={24} />
-          </Link>
-        ))}
-      </Repositories>
+      {repositories.map(repository => (
+        <Repositories key={repository.full_name}>
+          <img src={repository.owner.avatar_url} alt={repository.owner.login} />
+          <div>
+            <strong>{repository.full_name}</strong>
+            <p>{repository.description || 'No description'}</p>
+          </div>
+
+          <div>
+            <FiX size={24} onClick={() => deleteRepo(repository)} />
+            <Link
+              key={repository.full_name}
+              to={`repositories/${repository.full_name}`}
+            >
+              <FiChevronRight size={24} />
+            </Link>
+          </div>
+        </Repositories>
+      ))}
     </Container>
   );
 };

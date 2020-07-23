@@ -81,57 +81,67 @@ export const Error = styled.span`
 
 export const Repositories = styled.div`
   max-width: 650px;
+  display: flex;
+  align-items: center;
+
+  background-color: #fafafa;
+  border-radius: 5px;
+  width: 100%;
+  padding: 20px;
+
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateX(10px);
+  }
+
+  &:focus {
+    transform: translateX(10px);
+  }
+
+  & + div {
+    margin-top: 16px;
+  }
+
+  img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+
+    &:first-of-type {
+      flex: 1;
+    }
+
+    strong {
+      font-size: 18px;
+      color: #383838;
+    }
+
+    p {
+      color: #a8a8a8;
+      font-size: 16px;
+      margin-top: 5px;
+    }
+
+    a {
+      margin-top: 15px;
+    }
+  }
+
+  svg {
+    margin-left: auto;
+    color: #a8a8a8;
+    cursor: pointer;
+  }
 
   a {
-    display: flex;
-    align-items: center;
-
-    background-color: #fafafa;
-    border-radius: 5px;
-    width: 100%;
-    padding: 20px;
     text-decoration: none;
-
-    transition: transform 0.2s;
-
-    &:hover {
-      transform: translateX(10px);
-    }
-
-    &:focus {
-      transform: translateX(10px);
-    }
-
-    & + a {
-      margin-top: 16px;
-    }
-
-    img {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-    }
-
-    div {
-      margin: 0 16px;
-      flex: 1;
-
-      strong {
-        font-size: 18px;
-        color: #383838;
-      }
-
-      p {
-        color: #a8a8a8;
-        font-size: 16px;
-        margin-top: 5px;
-      }
-    }
-
-    svg {
-      margin-left: auto;
-      color: #a8a8a8;
-    }
   }
 `;
 
