@@ -109,6 +109,7 @@ export const Issues = styled.div`
     div {
       margin: 0 16px;
       flex: 1;
+      flex-wrap: wrap;
 
       strong {
         font-size: 18px;
@@ -119,6 +120,14 @@ export const Issues = styled.div`
         color: #a8a8a8;
         font-size: 16px;
         margin-top: 5px;
+        margin-right: 5px;
+      }
+
+      div {
+        margin: 2px 5px;
+        width: max-content;
+        display: flex;
+        align-items: center;
       }
     }
 
@@ -126,5 +135,16 @@ export const Issues = styled.div`
       margin-left: auto;
       color: #a8a8a8;
     }
+  }
+`;
+
+export const Label = styled.div`
+  display: flex;
+  padding: 5px;
+  border-radius: 5px;
+
+  h1 {
+    font-size: 16px;
+    color: #000;
   }
 `;
