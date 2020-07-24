@@ -108,10 +108,12 @@ export const Issues = styled.div`
 
     div {
       margin: 0 16px;
-      flex: 1;
+      display: flex;
+      flex-direction: column;
       flex-wrap: wrap;
 
       strong {
+        display: block;
         font-size: 18px;
         color: #383838;
       }
@@ -123,11 +125,12 @@ export const Issues = styled.div`
         margin-right: 5px;
       }
 
-      div {
-        margin: 2px 5px;
-        width: max-content;
+      section {
         display: flex;
+        justify-content: flex-start;
         align-items: center;
+        margin: 0;
+        padding: 5px 0;
       }
     }
 
@@ -139,12 +142,12 @@ export const Issues = styled.div`
 `;
 
 export const Label = styled.div`
-  display: flex;
+  margin: 0;
   padding: 5px;
   border-radius: 5px;
 
   h1 {
-    font-size: 16px;
+    font-size: 14px;
     color: #000;
   }
 `;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouteMatch, Link } from 'react-router-dom';
-import { FiChevronLeft, FiChevronRight, FiMinus } from 'react-icons/fi';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 import api from 'services/api';
 import Brand from 'assets/brand.svg';
@@ -27,7 +27,7 @@ interface Issue {
   id: number;
   title: string;
   html_url: string;
-  labels: Array<Label>;
+  labels?: Array<Label>;
   user: {
     login: string;
   };
@@ -49,7 +49,7 @@ const Repository: React.FC = () => {
         api.get(`repos/${params.repository}`),
         api.get(`repos/${params.repository}/issues`),
       ]);
-      console.log(data);
+
       setRepository(repo.data);
       setIssues(data);
     }
@@ -101,15 +101,9 @@ const Repository: React.FC = () => {
           <a key={issue.id} href={issue.html_url} target="_newblank">
             <div>
               <strong>{issue.title}</strong>
-              <div>
+              <section>
                 <p>{issue.user.login}</p>
-                {issue.labels.length > 0 && <FiMinus />}
-                {issue.labels.map(label => (
-                  <Label style={{ backgroundColor: `#${label.color}` }}>
-                    <h1>{label.name}</h1>
-                  </Label>
-                ))}
-              </div>
+              </section>
             </div>
             <FiChevronRight size={24} />
           </a>
